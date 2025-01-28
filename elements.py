@@ -6,13 +6,14 @@ Holds all element and compound data, plus periodic table info.
 # A few special single atoms with real data:
 SPECIAL_ATOMS = {
     1:  {"symbol": "H", "atomic_mass": 1,  "color": (255, 0, 0),    "radius": 6},
+    6:  {"symbol": "C", "atomic_mass": 12, "color": (80,80,80),   "radius": 7},
     7:  {"symbol": "N", "atomic_mass": 14, "color": (100, 100, 255),"radius": 7},
     8:  {"symbol": "O", "atomic_mass": 16, "color": (255, 100, 100),"radius": 7},
 }
 
 # We'll build a dictionary PERIODIC_TABLE_ATOMS for Z=1..118
 # We do a naive 18 columns, 7 rows approach for layout in a bottom UI.
-PERIODIC_TABLE_ATOMS = {} 
+PERIODIC_TABLE_ATOMS = {}
 def build_periodic_table():
     for Z in range(1, 119):
         if Z in SPECIAL_ATOMS:
@@ -22,15 +23,13 @@ def build_periodic_table():
             color  = sdata["color"]
             radius = sdata["radius"]
         else:
-            # placeholder
             symbol = f"El{Z}"
             mass   = 50
-            color  = (150, 150, 150)
+            color  = (150,150,150)
             radius = 8
-        
-        # row/col in an 18-col layout
-        row = (Z - 1) // 18 + 1
-        col = (Z - 1) % 18 + 1
+
+        row = (Z - 1)//18 + 1
+        col = (Z - 1)%18 + 1
 
         PERIODIC_TABLE_ATOMS[Z] = {
             "symbol": symbol,
